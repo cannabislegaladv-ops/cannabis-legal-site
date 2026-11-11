@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cannabis.Legal — Oyarzabal & Rostirolla Advocacia · RS</title>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,900;1,9..144,600&family=Inter:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --verde: #5C8C3D;
+    --verde-dark: #3E5F29;
+    --verde-deep: #263A19;
+    --creme: #F7F0DC;
+    --creme-2: #EBE0BC;
+    --branco: #FFFFFF;
+    --grafite: #1B2113;
+    --text-muted: #5f6350;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Inter', system-ui, sans-serif;
+    --mono: 'Space Mono', monospace;
+    --display: 'Anton', 'Inter', sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--creme); color: var(--grafite); line-height: 1.6; }
+
+  .proc-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 1px; color: var(--verde-dark); display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; }
+  .proc-label::before { content: ''; width: 12px; height: 12px; flex-shrink: 0; background-color: var(--verde-dark); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C7 6 4 12 12 22C20 12 17 6 12 2Z'/%3E%3C/svg%3E") no-repeat center / contain; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 2C7 6 4 12 12 22C20 12 17 6 12 2Z'/%3E%3C/svg%3E") no-repeat center / contain; }
+
+  /* LOGOMARK — reutilizável */
+  .mark-icon { fill: var(--verde); }
+  .wordline { position: relative; display: inline-block; font-family: var(--display); text-transform: uppercase; line-height: 0.86; letter-spacing: 1px; overflow: hidden; }
+  .wordline::after { content: ''; position: absolute; left: -12%; right: -12%; top: 40%; height: 11%; background: var(--branco); transform: skewY(-7deg); }
+  .wordline.creme { color: var(--creme); }
+  .wordline.verde { color: var(--verde); }
+
+  /* NAV */
+  nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2.5rem; background: rgba(38,58,25,0.95); backdrop-filter: blur(10px); }
+  .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+  .nav-icon { width: 30px; height: 30px; }
+  .nav-icon .mark-icon { fill: var(--verde); }
+  .nav-brand { font-family: var(--display); font-size: 15px; color: var(--creme); letter-spacing: 0.5px; line-height: 1; }
+  .nav-brand span { color: var(--verde); }
+  .nav-sub { font-family: var(--mono); font-size: 8px; color: rgba(247,240,220,0.45); letter-spacing: 1px; margin-top: 3px; }
+  .nav-links { display: flex; align-items: center; gap: 2rem; }
+  .nav-links a { font-family: var(--mono); font-size: 11px; letter-spacing: 0.5px; color: rgba(247,240,220,0.65); text-decoration: none; }
+  .nav-links a:hover { color: var(--creme); }
+  .nav-cta { background: var(--verde); color: var(--grafite) !important; padding: 8px 16px; border-radius: 3px; font-weight: 600; }
+
+  /* HERO */
+  .hero { min-height: 100vh; background: var(--verde-deep); display: flex; align-items: center; padding: 120px 2.5rem 4rem; position: relative; overflow: hidden; }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image: linear-gradient(rgba(247,240,220,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(247,240,220,0.03) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+  .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center; position: relative; z-index: 1; }
+  .hero-proc { font-family: var(--mono); font-size: 11px; color: var(--verde); letter-spacing: 1px; margin-bottom: 1.5rem; }
+  .hero-headline { font-family: var(--serif); font-weight: 900; font-size: clamp(2.4rem, 4.8vw, 3.9rem); color: var(--creme); line-height: 1.08; margin-bottom: 1.25rem; }
+  .hero-headline em { font-style: italic; color: var(--verde); }
+  .hero-sub { font-size: 1rem; color: rgba(247,240,220,0.6); max-width: 460px; line-height: 1.75; margin-bottom: 2.25rem; font-weight: 300; }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary { display: inline-block; padding: 13px 28px; background: var(--verde); color: var(--grafite); font-size: 13px; font-weight: 700; letter-spacing: 0.3px; border-radius: 3px; text-decoration: none; }
+  .btn-primary:hover { background: #6DA34A; }
+  .btn-ghost { display: inline-block; padding: 13px 28px; border: 1px solid rgba(247,240,220,0.25); color: var(--creme); font-size: 13px; font-weight: 400; letter-spacing: 0.3px; border-radius: 3px; text-decoration: none; }
+  .btn-ghost:hover { border-color: var(--creme); }
+
+  /* LOGOMARK GRANDE NA HERO */
+  .hero-mark { display: flex; flex-direction: column; align-items: center; gap: 0; }
+  .hero-mark-icon { width: 150px; height: 150px; margin-bottom: 6px; }
+  .hero-mark .wordline { font-size: clamp(2rem, 4vw, 2.9rem); width: 100%; text-align: center; }
+
+  /* SOBRE */
+  .sobre { background: var(--creme); padding: 6rem 2.5rem; }
+  .sobre-inner { max-width: 1100px; margin: 0 auto; }
+  .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .section-title { font-family: var(--serif); font-size: 2.1rem; font-weight: 900; color: var(--grafite); line-height: 1.2; margin-bottom: 1.1rem; }
+  .section-title em { font-style: italic; color: var(--verde-dark); }
+  .section-body { font-size: 15px; color: var(--text-muted); line-height: 1.8; }
+  .section-body + .section-body { margin-top: 1rem; }
+
+  .dossie { background: #fff; border: 1px solid var(--creme-2); border-radius: 4px; padding: 1.75rem 2rem; position: relative; }
+  .dossie::before { content: 'DOSSIÊ'; position: absolute; top: -10px; left: 20px; background: var(--creme); padding: 0 10px; font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: var(--verde-dark); }
+  .dossie-quote { font-family: var(--serif); font-style: italic; font-weight: 600; font-size: 1.15rem; color: var(--grafite); line-height: 1.5; margin-bottom: 1.25rem; }
+  .dossie-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .dtag { font-family: var(--mono); font-size: 9.5px; padding: 4px 10px; border: 1px solid var(--creme-2); border-radius: 2px; color: var(--verde-dark); }
+
+  /* ATUACAO */
+  .atuacao { background: var(--verde-deep); padding: 6rem 2.5rem; }
+  .atuacao-inner { max-width: 1100px; margin: 0 auto; }
+  .atuacao .proc-label { color: var(--verde); }
+  .atuacao .proc-label::before { background-color: var(--verde); }
+  .atuacao-title { font-family: var(--serif); font-size: 2.1rem; font-weight: 900; color: var(--creme); margin-bottom: 3rem; }
+  .areas-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(247,240,220,0.1); }
+  .area-card { background: var(--verde-deep); padding: 1.75rem 1.6rem; }
+  .area-num { font-family: var(--mono); font-size: 10px; color: var(--verde); margin-bottom: 1rem; }
+  .area-title { font-family: var(--serif); font-weight: 700; font-size: 1.05rem; color: var(--creme); margin-bottom: 8px; }
+  .area-desc { font-size: 12px; color: rgba(247,240,220,0.5); line-height: 1.65; }
+
+  /* MARCO LEGAL */
+  .marco { background: var(--creme); padding: 6rem 2.5rem; }
+  .marco-inner { max-width: 1100px; margin: 0 auto; }
+  .marco-header { margin-bottom: 2.5rem; max-width: 640px; }
+  .rdcs-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .rdc-stamp { background: #fff; border: 1px solid var(--creme-2); border-radius: 4px; padding: 1.4rem 1.25rem; border-top: 3px solid var(--verde); }
+  .rdc-num { font-family: var(--mono); font-size: 12px; font-weight: 700; color: var(--verde-dark); margin-bottom: 6px; }
+  .rdc-name { font-size: 12.5px; font-weight: 600; color: var(--grafite); margin-bottom: 8px; }
+  .rdc-desc { font-size: 11px; color: var(--text-muted); line-height: 1.6; margin-bottom: 10px; }
+  .rdc-vig { font-family: var(--mono); font-size: 9px; color: var(--verde); letter-spacing: 0.5px; }
+
+  /* SOCIOS */
+  .socios { background: var(--verde-deep); padding: 6rem 2.5rem; }
+  .socios-inner { max-width: 1100px; margin: 0 auto; }
+  .socios .proc-label { color: var(--verde); }
+  .socios .proc-label::before { background-color: var(--verde); }
+  .socios-title { font-family: var(--serif); font-size: 2.1rem; font-weight: 900; color: var(--creme); margin-bottom: 3rem; }
+  .socios-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: rgba(247,240,220,0.1); }
+  .socio-card { background: var(--verde-dark); padding: 2rem; }
+  .socio-axis { width: 36px; height: 3px; margin-bottom: 1.25rem; background: var(--verde); }
+  .socio-name { font-family: var(--serif); font-size: 1.35rem; font-weight: 900; color: var(--creme); }
+  .socio-role { font-family: var(--mono); font-size: 10px; color: rgba(247,240,220,0.5); margin: 6px 0 1.1rem; letter-spacing: 0.3px; }
+  .socio-bio { font-size: 13px; color: rgba(247,240,220,0.65); line-height: 1.75; margin-bottom: 1.1rem; }
+  .socio-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+  .stag2 { font-family: var(--mono); font-size: 9px; padding: 3px 9px; border: 1px solid rgba(247,240,220,0.2); border-radius: 2px; color: rgba(247,240,220,0.6); }
+
+  /* CONTATO */
+  .contato { background: var(--verde); padding: 6rem 2.5rem; text-align: center; }
+  .contato-inner { max-width: 600px; margin: 0 auto; }
+  .contato .section-title { color: var(--grafite); }
+  .contato .section-body { color: rgba(27,33,19,0.7); margin-bottom: 2.25rem; }
+  .contato-actions { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-whatsapp { display: inline-flex; align-items: center; gap: 8px; padding: 13px 26px; background: var(--grafite); color: var(--creme); font-size: 13px; font-weight: 500; border-radius: 3px; text-decoration: none; }
+
+  footer { background: var(--verde-deep); padding: 2rem 2.5rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+  .footer-brand { font-family: var(--display); font-size: 15px; color: var(--creme); letter-spacing: 0.5px; }
+  .footer-brand span { color: var(--verde); }
+  .footer-sub { font-family: var(--mono); font-size: 9px; color: rgba(247,240,220,0.35); margin-top: 4px; }
+  .footer-legal { font-size: 10px; color: rgba(247,240,220,0.35); text-align: right; }
+
+  .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-mark-icon { width: 100px; height: 100px; }
+    .sobre-grid, .socios-grid { grid-template-columns: 1fr; }
+    .areas-grid, .rdcs-row { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) { .fade-up { opacity: 1; transform: none; } }
+</style>
+</head>
+<body>
+
+<!-- SVG do ícone: folha sobre balança da justiça -->
+<svg style="display:none;">
+  <symbol id="icon-scale-leaf" viewBox="0 0 200 220">
+    <path class="mark-icon" d="M100 10 C93 40 82 62 100 105 C118 62 107 40 100 10 Z"/>
+    <path class="mark-icon" d="M100 105 C82 78 62 58 35 50 C55 68 72 88 100 105 Z"/>
+    <path class="mark-icon" d="M100 105 C118 78 138 58 165 50 C145 68 128 88 100 105 Z"/>
+    <path class="mark-icon" d="M100 105 C86 92 66 82 45 82 C60 96 78 106 100 105 Z"/>
+    <path class="mark-icon" d="M100 105 C114 92 134 82 155 82 C140 96 122 106 100 105 Z"/>
+    <rect class="mark-icon" x="95" y="100" width="10" height="80" rx="3"/>
+    <path class="mark-icon" d="M75 178 h50 l6 12 h-62 z"/>
+    <rect class="mark-icon" x="30" y="118" width="140" height="7" rx="3"/>
+    <circle class="mark-icon" cx="30" cy="121" r="8"/>
+    <circle class="mark-icon" cx="170" cy="121" r="8"/>
+    <path class="mark-icon" d="M30 121 L4 168 h52 Z" fill="none" stroke="none"/>
+    <path d="M30 121 L4 168 L56 168 Z" fill="none" class="scale-line"/>
+    <path d="M170 121 L144 168 L196 168 Z" fill="none" class="scale-line"/>
+    <path class="mark-icon" d="M4 168 a26 14 0 0 0 52 0 Z"/>
+    <path class="mark-icon" d="M144 168 a26 14 0 0 0 52 0 Z"/>
+  </symbol>
+</svg>
+<style> .scale-line { stroke: var(--verde); stroke-width: 5; } </style>
+
+<nav>
+  <a href="#" class="nav-logo">
+    <svg class="nav-icon"><use href="#icon-scale-leaf"/></svg>
+    <div>
+      <div class="nav-brand">CANNABIS<span>.LEGAL</span></div>
+      <div class="nav-sub">BY OYARZABAL & ROSTIROLLA · RS</div>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="#atuacao">Atuação</a>
+    <a href="#marco">Marco legal</a>
+    <a href="#socios">Sócios</a>
+    <a href="#contato" class="nav-cta">Fale conosco</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <h1 class="hero-headline">Direito que<br>brota da terra,<br><em>deferido pela lei.</em></h1>
+      <p class="hero-sub">Advocacia enraizada no Sul, no novo marco ANVISA e na causa. Do habeas corpus à autorização sanitária — cada processo, do início ao deferimento.</p>
+      <div class="hero-actions">
+        <a href="#contato" class="btn-primary">Abrir consulta</a>
+        <a href="#atuacao" class="btn-ghost">Áreas de atuação</a>
+      </div>
+    </div>
+    <div class="hero-mark">
+      <svg class="hero-mark-icon"><use href="#icon-scale-leaf"/></svg>
+      <span class="wordline creme">CANNABIS</span>
+      <span class="wordline verde">LEGAL</span>
+    </div>
+  </div>
+</section>
+
+<section class="sobre" id="sobre">
+  <div class="sobre-inner">
+    <div class="sobre-grid">
+      <div class="fade-up">
+        <div class="proc-label">QUEM SOMOS</div>
+        <h2 class="section-title">Vivência real,<br><em>não encenada</em></h2>
+        <p class="section-body">Oyarzabal & Rostirolla é uma sociedade de advogados especializada em cannabis medicinal e cânhamo industrial, com atuação prioritária na Região Sul. Mateus é paciente e pai de paciente. Leonardo é político e ativista de Guaíba.</p>
+        <p class="section-body">A luta não é produto de marketing — é o dossiê de vida de cada sócio, transformado em técnica jurídica.</p>
+      </div>
+      <div class="dossie fade-up">
+        <div class="dossie-quote">"Do Pampa para o Brasil — a voz do Sul que planta direito e colhe saúde."</div>
+        <div class="dossie-tags">
+          <span class="dtag">CANNABIS MEDICINAL</span>
+          <span class="dtag">CÂNHAMO INDUSTRIAL</span>
+          <span class="dtag">AUTOCULTIVO</span>
+          <span class="dtag">HABEAS CORPUS</span>
+          <span class="dtag">ANVISA 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="atuacao" id="atuacao">
+  <div class="atuacao-inner">
+    <div class="proc-label">ÁREAS DE ATUAÇÃO</div>
+    <h2 class="atuacao-title">Onde o direito encontra a causa</h2>
+    <div class="areas-grid">
+      <div class="area-card fade-up"><div class="area-num">01</div><div class="area-title">Defesa penal canábica</div><div class="area-desc">Habeas corpus preventivo, defesa de pacientes e cultivadores associativos.</div></div>
+      <div class="area-card fade-up"><div class="area-num">02</div><div class="area-title">Associações de pacientes</div><div class="area-desc">Constituição e regularização junto à ANVISA sob o novo sandbox regulatório.</div></div>
+      <div class="area-card fade-up"><div class="area-num">03</div><div class="area-title">Cânhamo industrial</div><div class="area-desc">Licenciamento, compliance e estruturação societária para empresas do setor.</div></div>
+      <div class="area-card fade-up"><div class="area-num">04</div><div class="area-title">Compliance ANVISA</div><div class="area-desc">Adequação às RDCs 1012 a 1015/2026 — autorização sanitária e rotulagem.</div></div>
+      <div class="area-card fade-up"><div class="area-num">05</div><div class="area-title">Advocacy regulatório</div><div class="area-desc">Representação em fóruns institucionais: Assembleia Legislativa do Estado do Rio Grande do Sul e Conselho Estadual de Saúde.</div></div>
+      <div class="area-card fade-up"><div class="area-num">06</div><div class="area-title">Acesso do paciente</div><div class="area-desc">Ações para garantia do direito à medicação e importação para uso pessoal.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="marco" id="marco">
+  <div class="marco-inner">
+    <div class="marco-header fade-up">
+      <div class="proc-label">MARCO LEGAL 2026</div>
+      <h2 class="section-title">Dominamos as regras<br><em>porque ajudamos a construí-las</em></h2>
+    </div>
+    <div class="rdcs-row fade-up">
+      <div class="rdc-stamp"><div class="rdc-num">RDC 1.012</div><div class="rdc-name">Pesquisa Científica</div><div class="rdc-desc">Cultivo sem limite de THC para fins científicos.</div></div>
+      <div class="rdc-stamp"><div class="rdc-num">RDC 1.013</div><div class="rdc-name">Cultivo Medicinal</div><div class="rdc-desc">Requisitos para cultivo com THC ≤ 0,3%.</div></div>
+      <div class="rdc-stamp"><div class="rdc-num">RDC 1.014</div><div class="rdc-name">Sandbox Regulatório</div><div class="rdc-desc">Modelo experimental para associações de pacientes.</div></div>
+      <div class="rdc-stamp"><div class="rdc-num">RDC 1.015</div><div class="rdc-name">Autorização Sanitária</div><div class="rdc-desc">Substitui a RDC 327/2019. Fabricação e dispensação.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="socios" id="socios">
+  <div class="socios-inner">
+    <div class="proc-label">OS SÓCIOS</div>
+    <h2 class="socios-title">Dois advogados, uma causa</h2>
+    <div class="socios-grid">
+      <div class="socio-card fade-up">
+        <div class="socio-axis"></div>
+        <div class="socio-name">Mateus da Rosa Oyarzabal</div>
+        <div class="socio-role">ADVOGADO · PACIENTE · ATIVISTA CANÁBICO</div>
+        <p class="socio-bio">Transformou a vivência como paciente e pai de paciente em mandato de luta. Referência jurídica para associações de pacientes no RS. Mestre de cerimônia da Marcha da Maconha de Porto Alegre.</p>
+        <div class="socio-tags"><span class="stag2">AUTOCULTIVO</span><span class="stag2">HABEAS CORPUS</span><span class="stag2">TERCEIRO SETOR</span></div>
+      </div>
+      <div class="socio-card fade-up">
+        <div class="socio-axis"></div>
+        <div class="socio-name">Leonardo de Freitas Rostirolla</div>
+        <div class="socio-role">ADVOGADO · POLÍTICO · GUAÍBA/RS</div>
+        <p class="socio-bio">Representa entidades do setor no GT de Cannabis do Conselho Estadual de Saúde e na Frente Parlamentar da Cannabis Terapêutica da Assembleia Legislativa do Estado do Rio Grande do Sul. Referência em cânhamo industrial.</p>
+        <div class="socio-tags"><span class="stag2">COMPLIANCE ANVISA</span><span class="stag2">ASSEMBLEIA LEGISLATIVA DO ESTADO DO RIO GRANDE DO SUL</span><span class="stag2">CÂNHAMO</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contato" id="contato">
+  <div class="contato-inner">
+    <div class="proc-label" style="justify-content:center; color:rgba(27,33,19,0.7);">FALE COM A GENTE</div>
+    <h2 class="section-title">Seu caso merece<br>quem entende a causa.</h2>
+    <p class="section-body">Atendemos pacientes, associações, cultivadores e empresas do setor.</p>
+    <div class="contato-actions">
+      <a href="https://wa.me/555199321030" target="_blank" class="btn-whatsapp">WhatsApp</a>
+      <a href="mailto:escritorio@cannabislegal.com.br" class="btn-ghost" style="color:var(--grafite); border-color:rgba(27,33,19,0.4);">Enviar e-mail</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>
+    <div class="footer-brand">CANNABIS<span>.LEGAL</span></div>
+    <div class="footer-sub">OYARZABAL & ROSTIROLLA ADVOGADOS · OAB/RS · CANNABIS MEDICINAL & CÂNHAMO INDUSTRIAL</div>
+    <div class="footer-links"><a href="https://www.cannabislegal.com.br/">www.cannabislegal.com.br</a><a href="https://www.instagram.com/cannabis.legal.adv/">@cannabis.legal.adv</a><a href="mailto:escritorio@cannabislegal.com.br">escritorio@cannabislegal.com.br</a><a href="tel:+555199321030">+55 51 9932-1030</a></div>
+  </div>
+  <div class="footer-legal">Este site tem caráter informativo.<br>Não constitui consultoria jurídica.</div>
+</footer>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 70);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
+

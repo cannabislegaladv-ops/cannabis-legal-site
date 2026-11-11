@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+const source='source-content.html';
+let html=fs.readFileSync(source,'utf8');
+html=html.replace(/<link href="https:\/\/fonts.googleapis.com[^>]+>/,'<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">');
+html=html.replace(/<style>[\s\S]*?<\/style>/,'<link rel="stylesheet" href="assets/site.css">');
+html=html.replace(/<!-- SVG do ícone:[\s\S]*?<\/style>/,'');
+html=html.replace('<body>','<body id="inicio"><a class="skip-link" href="#conteudo">Pular para o conteúdo</a>');
+html=html.replace(/<a href="#" class="nav-logo">[\s\S]*?<\/a>/,'<a href="#inicio" class="nav-logo" aria-label="Cannabis Legal — por Oyarzabal & Rostirolla"><img src="assets/logo-header.png" alt="Cannabis Legal por Oyarzabal & Rostirolla" width="2172" height="724"></a><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="navigation">Menu <span aria-hidden="true">+</span></button>');
+html=html.replace('<div class="nav-links">','<div class="nav-links" id="navigation">');
+html=html.replace('<section class="hero">','<main id="conteudo"><section class="hero">');
+html=html.replace(/<div class="hero-mark">[\s\S]*?<\/div>/,'<div class="hero-mark"><img src="assets/logo-perspectiva.jpg" alt="Cannabis Legal, com folha de cannabis e balança da Justiça em perspectiva" width="1280" height="1280" fetchpriority="high"></div>');
+html=html.replace(/<a href="https:\/\/wa.me\/5551999999999"[^>]*>WhatsApp<\/a>/,'<button type="button" class="btn-whatsapp contact-pending">WhatsApp <span aria-hidden="true">↗</span></button>');
+html=html.replace(/<a href="mailto:contato@cannabis.legal"[^>]*>Enviar e-mail<\/a>/,'<button type="button" class="btn-ghost contact-pending">Enviar e-mail <span aria-hidden="true">↗</span></button>');
+html=html.replace('<div class="contato-actions">','<p id="contact-status" class="contact-status" role="status" aria-live="polite" hidden></p><div class="contato-actions">');
+html=html.replace('<footer>','</main><footer>');
+html=html.replace('<div class="footer-brand">CANNABIS<span>.LEGAL</span></div>','<img class="footer-logo" src="assets/logo-header.png" alt="Cannabis Legal por Oyarzabal & Rostirolla" width="2172" height="724" loading="lazy">');
+html=html.replace(/<script>[\s\S]*?<\/script>/,'<script src="assets/site.js" defer></script>');
+html=html.replace('</head>','<meta name="description" content="Advocacia enraizada no Sul, no novo marco ANVISA e na causa. Cannabis medicinal e cânhamo industrial — Oyarzabal & Rostirolla."><meta name="theme-color" content="#090a08"><link rel="icon" type="image/svg+xml" href="assets/favicon.svg"><link rel="shortcut icon" href="assets/favicon.svg"></head>');
+fs.writeFileSync('dist/index.html',html);
+console.log('Landing page created with original sections and approved logo images.');
+
