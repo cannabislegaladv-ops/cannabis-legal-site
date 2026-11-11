@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://cannabislegal.com.br/sitemap.xml
